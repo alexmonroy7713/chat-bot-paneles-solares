@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Ctrl+Sun</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.ctrlsun.com/lib/qq_public_bundle.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .ctrlSun-form-control {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            margin-top: 15px;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section hr {
+            margin-top: 30px;
+        }
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Pre-Cotización Con Número de Servicio CFE</h2>
+            <!-- START formulario RPU -->
+            <form action="" id="serviceNumberRpuForm">
+                <div class="form-section">
+                    <div id="serviceNumberRpuFormErrors" class="alert alert-danger d-none"></div>
+                    <div class="form-group">
+                        <label for="service_number_rpu">Número de Servicio (RPU)</label>
+                        <input type="text" name="service_number_rpu" class="form-control ctrlSun-form-control" placeholder="Número de Servicio (RPU)" title="Número de Servicio (RPU)" value="">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="contact_name">Nombre del Contacto</label>
+                            <input type="text" name="contact_name" class="form-control ctrlSun-form-control" placeholder="Nombre del Contacto" title="Nombre del Contacto" value="">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="mobile">Número Celular</label>
+                            <input type="text" name="mobile" id="mobile_input" class="form-control ctrlSun-form-control" placeholder="Número Celular" title="Número Celular" value="">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email">Correo</label>
+                            <input type="email" name="email" class="form-control ctrlSun-form-control" placeholder="Correo" title="Correo" value="">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button" id="submitButtonRpuForm">Generar Cotización</button>
+            </form>
+            <!-- END formulario RPU-->
+        </div>
+
+        <div class="form-container mt-5">
+            <h2>Pre-Cotización Precio a Consumo</h2>
+            <!-- START formulario Payments -->
+            <form action="" id="paymentToConsumptionForm">
+                <div class="form-section">
+                    <div id="paymentToConsumptionFormErrors" class="alert alert-danger d-none"></div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="contact_name_payment">Nombre del Contacto</label>
+                            <input type="text" name="contact_name" class="form-control ctrlSun-form-control" placeholder="Nombre del Contacto" title="Nombre del Contacto" id="contact_name_payment">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="mobile_payment">Número Celular</label>
+                            <input type="text" name="mobile" id="mobile_input_payment" class="form-control ctrlSun-form-control" placeholder="Número Celular" title="Número Celular">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email_payment">Correo</label>
+                            <input type="email" name="email" class="form-control ctrlSun-form-control" placeholder="Correo" title="Correo" id="email_payment">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="energy_rates">Tarifa</label>
+                            <select class="form-control ctrlSun-form-control" name="energy_rates" id="energy_rates">
+                                <option id="" value="">------------</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="locations">Localidad</label>
+                            <select class="form-control ctrlSun-form-control" name="locations" id="locations">
+                                <option id="" value="">------------</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="first_payment">Monto Mayor (MXN)</label>
+                            <input type="text" id="first_payment_input" name="first_payment" class="form-control ctrlSun-form-control" placeholder="Monto Mayor (MXN)" title="Monto Mayor (MXN)">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="second_payment">Monto Menor (MXN)</label>
+                            <input type="text" id="second_payment_input" name="second_payment" class="form-control ctrlSun-form-control" placeholder="Monto Menor (MXN)" title="Monto Menor (MXN)">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button" id="submitButtonPaymentForm">Generar Cotización</button>
+            </form>
+            <!-- END formulario Payments -->
+        </div>
+
+        <div class="form-container mt-5">
+            <h2>Pre-Cotización Basado en Consumo</h2>
+            <!-- START formulario Consumptions -->
+            <form action="" id="serviceNumberConsumptionForm">
+                <div class="form-section">
+                    <div id="serviceNumberConsumptionFormErrors" class="alert alert-danger d-none"></div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="contact_name_consumption">Nombre del Contacto</label>
+                            <input type="text" name="contact_name" class="form-control ctrlSun-form-control" placeholder="Nombre del Contacto" title="Nombre del Contacto" id="contact_name_consumption">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="mobile_consumption">Número Celular</label>
+                            <input type="text" name="mobile" id="mobile_input_consumption" class="form-control ctrlSun-form-control" placeholder="Número Celular" title="Número Celular">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email_consumption">Correo</label>
+                            <input type="email" name="email" class="form-control ctrlSun-form-control" placeholder="Correo" title="Correo" id="email_consumption">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="energy_rates_consumption">Tarifa</label>
+                            <select class="form-control ctrlSun-form-control" name="energy_rates" id="energy_rates_consumption">
+                                <option id="" value="">------------</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="locations_consumption">Localidad</label>
+                            <select class="form-control ctrlSun-form-control" name="locations" id="locations_consumption">
+                                <option id="" value="">------------</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="first_consumption">Consumo Mayor (kWh)</label>
+                            <input type="text" id="first_consumption_input" name="first_consumption" class="form-control ctrlSun-form-control" placeholder="Consumo Mayor (kWh)" title="Consumo Mayor (kWh)">
+                        </div> 
+                        <div class="form-group col-md-3">
+                            <label for="second_consumption">Consumo Menor (kWh)</label>
+                            <input type="text" id="second_consumption_input" name="second_consumption" class="form-control ctrlSun-form-control" placeholder="Consumo Menor (kWh)" title="Consumo Menor (kWh)">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button" id="submitButtonConsumptionForm">Generar Cotización</button>
+            </form>
+            <!-- END formulario Consumptions -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const accessToken = '96845c56ec88050b44ae9d58b3ec5a2dd60a';
+
+            function handleResponse(response) {
+                if (response && typeof response === 'object' && 'error' in response) {
+                    console.error(response.error);
+                } else {
+                    console.error("Respuesta inesperada del servidor");
+                }
+            }
+
+            function init_form_rpu(accessToken, formId, errorId) {
+                $.ajax({
+                    url: 'tu_endpoint_para_rpu',
+                    method: 'POST',
+                    data: { accessToken },
+                    success: function(response) {
+                        // Manejo de la respuesta exitosa
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        let response;
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = undefined;
+                        }
+                        handleResponse(response);
+                    }
+                });
+            }
+
+            function init_form_payment(accessToken, formId, errorId) {
+                $.ajax({
+                    url: 'tu_endpoint_para_payment',
+                    method: 'POST',
+                    data: { accessToken },
+                    success: function(response) {
+                        // Manejo de la respuesta exitosa
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        let response;
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = undefined;
+                        }
+                        handleResponse(response);
+                    }
+                });
+            }
+
+            function init_form_consumption(accessToken, formId, errorId) {
+                $.ajax({
+                    url: 'tu_endpoint_para_consumption',
+                    method: 'POST',
+                    data: { accessToken },
+                    success: function(response) {
+                        // Manejo de la respuesta exitosa
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        let response;
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = undefined;
+                        }
+                        handleResponse(response);
+                    }
+                });
+            }
+
+            window.init_form_rpu(accessToken, 'serviceNumberRpuForm', 'serviceNumberRpuFormErrors');
+            window.init_form_payment(accessToken, 'paymentToConsumptionForm', 'paymentToConsumptionFormErrors');
+            window.init_form_consumption(accessToken, 'serviceNumberConsumptionForm', 'serviceNumberConsumptionFormErrors');
+        });
+    </script>
+</body>
+</html>
