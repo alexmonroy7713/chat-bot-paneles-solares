@@ -27,7 +27,7 @@ const run = async (name: string, history: ChatCompletionMessageParam[]): Promise
             },
             ...history
         ],
-        temperature: 0,
+        temperature: 0.7,
         max_tokens: 300,
         top_p: 0,
         frequency_penalty: 0,
