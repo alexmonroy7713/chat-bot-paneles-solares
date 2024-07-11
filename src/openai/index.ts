@@ -17,9 +17,9 @@ const openai = new OpenAI({
 const run = async (name: string, history: ChatCompletionMessageParam[]): Promise<string> => {
 
     const promtp = generatePrompt(name)
-    console.log("Modelo utilizado:", "gpt-3.5-turbo");
+   
     const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o",
         messages: [
             {
                 "role": "system",
